@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/solid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>gui</title>
+</head>
+<body>
+    <div class="centerer">
+        <h1>지문인식을 이용한</h1>
+        <h1>출결확인 서비스</h1>
+
+        <div class="btn-container">
+            <a href="#" id="btn-enroll" class="btn-enroll">
+                등록<br><br>
+                <i class="fa-solid fa-plus"></i>
+            </a>
+            &nbsp;
+            <a href="#" id="btn-list" class="btn-list">
+                목록<br><br>
+                <i class="fa-solid fa-list-ul"></i>
+            </a>
+        </div>
+    </div>
+
+    <div id="error" class="page error">
+        <div class="timer error">
+            <div class="timer-bar error"></div>
+        </div>
+    
+        <div class="page-content">
+            <a href="#" class="btn-goback error">
+                <span class="fa-stack">
+                    <i class="fa fa-square fa-stack-2x"></i>
+                    <i class="fa fa-angle-left fa-stack-1x fa-inverse fa-2x"></i>
+                </span>
+            </a>
+
+            <h2 class="error ready"></h2>
+            <h2 class="error info"></h2>
+        </div>
+    </div>
+
+    <div id="check" class="page check">
+        <div class="timer check">
+            <div class="timer-bar check"></div>
+        </div>
+
+        <div class="page-content">
+            <h2 class="check st-info"></h2>
+            <h1 class="check label"></h1>
+        </div>
+    </div>
+
+    <div id="enroll" class="page enroll">
+        <div class="page-content">
+            <div class="enroll step-1 appear">
+                <a href="#" class="btn-goback enroll">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-angle-left fa-stack-1x fa-inverse fa-2x"></i>
+                    </span>
+                </a>
+
+                <h1 class="enroll title">학번과 이름을 입력하세요</h1>
+                <h4>ㅤ</h4>
+
+                <div class="fields">
+                    <input id="enroll-st-id" class="enroll student-id" type="number" placeholder="학번"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        maxlength="5" min="10101" autocomplete='off'>
+                    <input id="enroll-st-name" class="enroll student-name" type="text" placeholder="이름"  autocomplete='off'>
+                </div>
+
+                <div class="btn-next-container">
+                    <a href="#" id="enroll-st-next" class="btn-next enroll disappear">
+                        다음
+                        <i class="fa-solid fa-angle-right fa-inverse"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="enroll step-2 disappear">
+                <h2 id="e-process"></h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="list" class="page list">
+        <div class="page-content">
+            <div class="header">
+                <a href="#" class="btn-goback list">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-angle-left fa-stack-1x fa-inverse fa-2x"></i>
+                    </span>
+                </a>
+
+                <div class="search-box">
+                    <span class="icon"><i class="fa fa-search"></i></span>
+                    <input type="search" id="search" placeholder="Search..." autocomplete='off' />
+                </div>
+            </div>
+
+            <table class="st_list">
+                <thead>
+                    <tr>
+                        <th><span>학번</span></th>
+                        <th><span>이름</span></th>
+                        <th><span>상태</span></th>
+                        <th><div id="number"></div></th>
+                    </tr>
+                </thead>
+                <tbody id="st_body">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="delete" data-st_id="" class="page delete">
+        <div class="page-content">
+            <div class="delete step-1 appear">
+                <a href="#" class="btn-goback delete">
+                    <span class="fa-stack">
+                        <i class="fa fa-square fa-stack-2x"></i>
+                        <i class="fa fa-angle-left fa-stack-1x fa-inverse fa-2x"></i>
+                    </span>
+                </a>
+
+                <h1 class="delete title">삭제하시겠습니까?</h1>
+                <br><br>
+
+                <h2 id="delete_st-info"></h2>
+                <br><br>
+                
+                <a href="#" id="delete-st-next" class="btn-next delete">
+                    삭제
+                </a>
+            </div>
+
+            <div class="delete step-2 disappear">
+                <h2>삭제중...</h2>
+            </div>
+
+            <div class="delete step-end disappear">
+                <h2 id="d-result"></h2>
+                <h4>ㅤ</h4>
+                <a href="#" class="btn-end">확인</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script src="{{ url_for('static', filename='socket.io/socket.io.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/gui.js') }}"></script>
+
+</html>
